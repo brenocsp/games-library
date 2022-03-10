@@ -6,20 +6,26 @@ import './login.css'
 
 function Login() {
     return (
-        <div className='login-page'>
+        <div className='d-flex align-items-center justify-content-center login-page'>
             <Container>
-                <Form>
-                    <div className='form-group'>
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type='email' className='form-control'></Form.Control>
+                <Row>
+                    <Col lg={2}></Col>
+                    <Col sm={12} lg={8}>
+                        <Form>
+                            <div className='form-group'>
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control type='email' className='form-control'></Form.Control>
 
-                        <Form.Label>Senha</Form.Label>
-                        <Form.Control type='password' className='form-control'></Form.Control>
-                    </div>
-                    <Button variant='submit' className='submit-button'>Entrar</Button>
-                    <br/>
-                    <Form.Text className='texto-cadastro'>Novo usuário? <Link to='/cadastro'>Cadastre-se aqui</Link></Form.Text>
-                </Form>
+                                <Form.Label>Senha</Form.Label>
+                                <Form.Control type='password' className='form-control'></Form.Control>
+                            </div>
+                            <Button variant='submit' className='login-submit-button'>Entrar</Button>
+                            <br/>
+                            <Form.Text className='texto-cadastro'>Novo usuário? <Link to='/cadastro'>Cadastre-se aqui</Link></Form.Text>
+                        </Form>
+                    </Col>
+                    <Col lg={2}></Col>
+                </Row>
             </Container>
         </div>
     );
