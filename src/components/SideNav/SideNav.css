@@ -1,0 +1,43 @@
+ul{
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar {
+    background-color: #333333;
+    width: 96px;
+    height: 100vh;
+}
+
+/* .navmenu {
+    display: flex;
+    justify-content: center;
+} */
+
+.nav-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    
+}
+
+.nav-text a{
+    display: flex;
+    justify-content: center;
+    /* align-items: center;
+    height: 100%;
+    width: 100%; */
+}
+
+.nav-text a:hover {
+    background-color: #404040;
+}
+
+.logout {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
