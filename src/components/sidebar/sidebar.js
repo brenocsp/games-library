@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { SideNavData } from "./SideNavData";
-import "./SideNav.css";
+import { SideBarData } from "./sidebarData";
+import "./sidebar.css";
 
-function SideNav() {
+function Sidebar() {
   return (
     <div className="sidebar">
       <nav className="navmenu">
         <ul className="nav-menu-items">
-          {SideNavData.map((item, index) => {
+          {SideBarData.map((item, index) => {
             return (
               <li key={index} className={item.cName}>
                 <Link to={item.path}>{item.icon}</Link>
@@ -27,4 +27,4 @@ function SideNav() {
   );
 }
 
-export default SideNav;
+export default Sidebar;

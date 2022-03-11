@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Table, Badge, Row, Col } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import SideNav from "../../components/SideNav/SideNav";
+import SideBar from "../../components/sidebar/sidebar.js";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./meus-jogos.css";
@@ -23,7 +23,7 @@ function MeusJogos() {
 
   return (
     <div className="d-flex align-items-center justify-content-center meus-jogos-page">
-      <SideNav />
+      <SideBar />
 
       <Container>
         <h1>Meus Jogos</h1>

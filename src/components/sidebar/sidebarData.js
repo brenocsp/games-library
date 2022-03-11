@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export const SideNavData = [
+export const SideBarData = [
     {
         tittle: 'Home',
         path: '/meus-jogos',
