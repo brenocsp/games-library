@@ -1,37 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap%27');
 
-body {
-    background-color: #121212;
+.meus-jogos-body {
+    background-color: #252525;
 }
 
-.meus-jogos-page {
+h1 {
+    color: #D9D9D9;
+    font-size: 60px;
+    text-align: left;
+    margin-bottom: 70px;
+}
+
+.container-jogos {
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
     color: #D9D9D9;
-    font-size: 26px;
-    height: 100vh;
-    text-align: center;
-    /* padding-left: 20px;
-    padding-right: 20px; */
+
+    margin: 80px;
+    width: 100%;
 }
 
-.tabela {
-    color: #D9D9D9;
-    background-color: #333333;
-    border-radius: 10px;
-    border-color: #121212 !important;
-    border-width: 10px !important;
+@media (max-width: 800px) {
+    .container-jogos {
+        margin: 2vh;
+        width: 100%;
+    }
+    h1 {
+        font-size: 50px;
+        text-align: left;
+        margin: 30px;
+    }
 }
-
-.linhas-tabela {
-    padding: 15px !important;
-}
-
-.tags {
-    margin-left: 10px;
-    margin-right: 10px;
-    background-color: #2B008D !important;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 200;
-}
-

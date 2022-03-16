@@ -6,7 +6,7 @@ import './cadastro.css'
 
 function Cadastro() {
     return (
-        <div>
+        <div className='cadastro-body'>
             <div className='d-flex align-items-center cadastro-back-button'>
                 <Link to='/login'><img src="./assets/arrow_back_white.png" alt="voltar para a página de login"/></Link>
             </div>

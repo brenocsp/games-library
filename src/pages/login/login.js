@@ -8,8 +8,7 @@ function Login() {
     return (
         <div className='d-flex align-items-center justify-content-center login-page'>
             <Container>
-                <Row>
-                    <Col lg={2}></Col>
+                <Row className='d-flex align-items-center justify-content-center'>
                     <Col sm={12} lg={8}>
                         <Form>
                             <div className='form-group'>
@@ -24,7 +23,6 @@ function Login() {
                             <Form.Text className='texto-cadastro'>Novo usuário? <Link to='/cadastro'>Cadastre-se aqui</Link></Form.Text>
                         </Form>
                     </Col>
-                    <Col lg={2}></Col>
                 </Row>
             </Container>
         </div>

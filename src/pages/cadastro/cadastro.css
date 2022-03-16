@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap%27');
 
-body {
+.cadastro-body {
     background-color: #121212;
 }
 
@@ -13,6 +13,7 @@ body {
     text-align: center;
     padding-left: 20px;
     padding-right: 20px;
+    background-color: #121212;
 }
 
 .form-control {
@@ -45,4 +46,5 @@ body {
    padding-left: 30px;
    padding-top: 30px;
    height: 10vh;
+   background-color: #121212;
 }

@@ -7,21 +7,17 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <nav className="navmenu">
-        <ul className="nav-menu-items">
           {SideBarData.map((item, index) => {
             return (
-              <li key={index} className={item.cName}>
+              <button key={index} className='sidebar-button'>
                 <Link to={item.path}>{item.icon}</Link>
-              </li>
+              </button>
             );
           })}
-        </ul>
       </nav>
 
       <div className="logout">
-        <Link to="/login">
-          <img src="./assets/logout_red.png" alt="Logout Icon"></img>
-        </Link>
+        <button className="sidebar-button"><Link to="/login"><img src="./assets/logout_red.png" alt="Logout Icon"></img></Link></button>
       </div>
     </div>
   );
