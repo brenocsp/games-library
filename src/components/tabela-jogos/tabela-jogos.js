@@ -2,6 +2,8 @@ import React from "react";
 import { Table, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./tabela-jogos.css";
+import AddGameModal from "../AddGame/AddGame.js";
+import EditGameModal from "../EditGame/EditGame.js";
 
 function TabelaJogos() {
     const generos = ["Ação", "Aventura", "Mistério"];
@@ -27,7 +29,7 @@ function TabelaJogos() {
               <th className="texto-cabecalho largura-pequena">Preço</th>
               <th className="texto-cabecalho">Gênero</th>
               <th className="texto-cabecalho texto-add-jogos largura-media">
-                <Link to="/">Adicionar um Jogo<img className="icons" src="./assets/add_purple.svg" alt="adicionar um jogo" /></Link>
+                <AddGameModal />
               </th>
             </tr>
           </thead>
@@ -37,7 +39,7 @@ function TabelaJogos() {
               <td className="texto-linhas largura-pequena">R$ 169,95</td>
               <td className="texto-linhas">{handleGenres(generos)}</td>
               <td className="texto-linhas icones-tabela largura-media">
-                <Link to="/"><img className="icons" src="./assets/edit.svg" alt="editar um jogo" /></Link>
+                <EditGameModal />
                 <Link to="/"><img className="icons" src="./assets/trash.svg" alt="excluir um jogo" /></Link>
               </td>
             </tr>
@@ -46,13 +48,13 @@ function TabelaJogos() {
               <td className="texto-linhas largura-pequena">R$ 349,24</td>
               <td className="texto-linhas">{handleGenres(generos)}</td>
               <td className="texto-linhas icones-tabela largura-media">
-                <Link to="/"><img className="icons" src="./assets/edit.svg" alt="editar um jogo" /></Link>
+                <EditGameModal />
                 <Link to="/"><img className="icons" src="./assets/trash.svg" alt="excluir um jogo" /></Link>
               </td>
             </tr>
           </tbody>
         </Table>
-        <p className="texto-add-jogos-final"><Link to="/">Adicionar um Jogo<img className="icons" src="./assets/add_purple.svg" alt="adicionar um jogo"/></Link> </p>     
+        <p className="texto-add-jogos-final"><AddGameModal /> </p>     
     </div>
   );
 }
