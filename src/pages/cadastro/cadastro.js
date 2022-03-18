@@ -1,24 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import { Button, Form, Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './cadastro.css'
 
-
-
-/*
-function validatePassword(){
-    var password = document.getElementById("passwd").value
-    var confirm_password = document.getElementById("passwdConfir").value;
-        if(password === confirm_password) {
-                document.getElementById('resultado').innerHTML=''
-            } else {
-                document.getElementById('resultado').innerHTML='não correspondem'
-            }
-}
-*/
+import axios from 'axios';
 
 function Cadastro() {
+
+    const [name, setUserName] = useState("");
+    const [email, setUserEmail] = useState("");
+    const [password, setPassword] = useState("");
+    
+  useEffect(() => {
+        axios.post("http://localhost:3001/usuarios/",{
+            nome: name,
+            email: email,
+            senha: password,
+    })
+          .then((response) => {
+                setUserName(response.data);
+                setUserEmail(response.data);
+                setPassword(response.data);
+            })
+          .catch((err) => {
+            console.error("ops! ocorreu um erro" + err);
+          });
+        }, []);
+    
+    // function validatePassword(){
+    //     var password = document.getElementById("passwd").value
+    //     var confirm_password = document.getElementById("passwdConfir").value;
+    //         if(password === confirm_password) {
+    //                 document.getElementById('resultado').innerHTML=''
+    //             } else {
+    //                 document.getElementById('resultado').innerHTML='não correspondem'
+    //             }
+    // }
+
     return (
         <div>
             <div className='d-flex align-items-center cadastro-back-button'>
@@ -31,7 +50,7 @@ function Cadastro() {
                             <Row>
                                 <Col sm={12} lg={6}>
                                     <Form.Label>Nome</Form.Label>
-                                    <Form.Control type='text' className='form-control'></Form.Control>
+                                    <Form.Control type='text' className='form-control' value={name} onChange={this.setUserName}/>
                                 </Col>
                                 <Col sm={12} lg={6}>
                                     <Form.Label>Email</Form.Label>
@@ -45,7 +64,7 @@ function Cadastro() {
                                 </Col>
                                 <Col sm={12} lg={6}>
                                 <Form.Label>Confirmar Senha</Form.Label>
-                                   <input /* onKeyUp={ validatePassword()}*/ type='password' className='form-control' id='passwdConfir' ></input>
+                                   <input /* onKeyUp={ validatePassword()}*/ type='password' className='form-control' id='passwdConfir'  ></input>
                                    <span id='resultado'></span>
                                 </Col>
                             </Row>

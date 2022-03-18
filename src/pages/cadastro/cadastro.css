@@ -37,12 +37,50 @@ body {
     color: #D9D9D9;
 }
 
+.submit-button:hover {
+    color: #D9D9D9;
+    background-color: #5e1aff;
+}
+
 .form-group {
-    text-align: left;   
+    text-align: left;
 }
 
 .cadastro-back-button {
-   padding-left: 30px;
-   padding-top: 30px;
-   height: 10vh;
+    padding: 20px;
+    height: 10vh;
+    margin-bottom: 25px;
+}
+
+.pwStrWeak {
+    color: gray;
+    font-size: 23px;
+    margin-bottom: 10px !important;
+}
+
+.pwStrStrong {
+    color: gray;
+    font-size: 23px;
+    margin-bottom: 10px !important;
+    text-align: right;
+}
+
+.mostrar-senha-button {
+    background-color: #3700B3;
+    color: #D9D9D9;
+    border-color: transparent;
+}
+
+.mostrar-senha-button:hover {
+    color: #D9D9D9;
+    background-color: #5e1aff;
+}
+
+.form-control-senha {
+    background-color: #252525;
+    border-color: transparent;
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #D9D9D9;
+    width: 100%;
 }
