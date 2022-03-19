@@ -1,18 +1,19 @@
 import React from "react";
 import { Button, Form, Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import QualidadeSenha from "./qualidade-senha.js";
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './cadastro.css'
 
-import PasswordStr from "./PasswordStr";
-
-const SignUpForm = ({
+const FormularioCadastro = ({
   onSubmit,
   onChange,
   errors,
   user,
   score,
   btnTxt,
+  btnImg,
   type,
   pwMask,
   onPwChange
@@ -31,23 +32,24 @@ const SignUpForm = ({
                                 <Form.Label>Nome</Form.Label>
                                 <Form.Control
                                     className='form-control'
-                                    name="username"
-                                    floatingLabelText="user name"
-                                    value={user.username}
+                                    name="nome"
+                                    value={user.nome}
                                     onChange={onChange}
-                                    errorText={errors.username}
-                                /> 
+                                    autoComplete='name'
+                                />
+                                <p className="error-message">{errors.username}</p>
                             </Col>
                             <Col sm={12} lg={6}>
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control
                                     className='form-control'
+                                    type="email"
                                     name="email"
-                                    floatingLabelText="email"
                                     value={user.email}
                                     onChange={onChange}
-                                    errorText={errors.email}
+                                    autoComplete='email'
                                 />
+                                <p className="error-message">{errors.email}</p>
                             </Col>
                         </Row>
                         <Row>
@@ -57,19 +59,24 @@ const SignUpForm = ({
                                     <Form.Control
                                         className='form-control-senha'
                                         type={type}
-                                        name="password"
-                                        floatingLabelText="password"
-                                        value={user.password}
+                                        name="senha"
+                                        value={user.senha}
                                         onChange={onPwChange}
-                                        errorText={errors.password}
+                                        autoComplete='new-password'
                                     />
-                                    <Button className="mostrar-senha-button" label={btnTxt} onClick={pwMask}><img src="./assets/visibility.svg"></img></Button>
+                                    <p className="error-message">{errors.password}</p>
                                 </div>
                         
                                 <div className="pwStrRow">
                                     {score >= 1 && (
                                         <div>
-                                            <PasswordStr score={score}/>
+                                            <QualidadeSenha score={score}/>
+                                            <Button 
+                                                className='mostrar-senha-button' 
+                                                label={btnTxt} 
+                                                onClick={pwMask}
+                                                ><img src={btnImg} alt={btnTxt}></img>
+                                            </Button>
                                         </div>
                                         )} 
                                 </div>
@@ -81,15 +88,19 @@ const SignUpForm = ({
                                     className='form-control'
                                     type={type}
                                     name="pwconfirm"
-                                    floatingLabelText="confirm password"
                                     value={user.pwconfirm}
                                     onChange={onChange}
-                                    errorText={errors.pwconfirm}
-                                /> 
+                                    autoComplete='new-password'
+                                />
+                                <p className="error-message">{errors.pwconfirm}</p>
                             </Col>
                         </Row>
                     </div>
-                    <Button variant='submit' className='submit-button'>Cadastre-se</Button>    
+                    <Button 
+                        className='submit-button'
+                        type="submit"
+                        value="Submit"
+                    >Cadastre-se</Button>
                 </Form>
             </Container>
         </Row>
@@ -98,4 +109,4 @@ const SignUpForm = ({
   );
 };
 
-export default SignUpForm;
+export default FormularioCadastro;

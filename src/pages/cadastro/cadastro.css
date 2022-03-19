@@ -73,7 +73,7 @@ body {
 
 .mostrar-senha-button:hover {
     color: #D9D9D9;
-    background-color: #5e1aff;
+    background-color: #5e1aff;    
 }
 
 .form-control-senha {
@@ -83,4 +83,9 @@ body {
     margin-bottom: 20px;
     color: #D9D9D9;
     width: 100%;
+}
+
+.error-message {
+    color: red;
+    font-size: 18px;
 }

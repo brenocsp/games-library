@@ -1,83 +1,138 @@
-import React, { useEffect, useState } from "react";
-import { Button, Form, Container, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './cadastro.css'
+import React, { Component } from "react";
+import FormularioCadastro from "./formulario-cadastro.js";
 
-import axios from 'axios';
+const axios = require("axios");
+const FormValidators = require("./validacao");
+const validarFormularioCadastro = FormValidators.validarFormularioCadastro;
+const zxcvbn = require("zxcvbn");
 
-function Cadastro() {
+class Cadastro extends Component {
+  constructor(props) {
+    super(props);
 
-    const [name, setUserName] = useState("");
-    const [email, setUserEmail] = useState("");
-    const [password, setPassword] = useState("");
-    
-  useEffect(() => {
-        axios.post("http://localhost:3001/usuarios/",{
-            nome: name,
-            email: email,
-            senha: password,
-    })
-          .then((response) => {
-                setUserName(response.data);
-                setUserEmail(response.data);
-                setPassword(response.data);
-            })
-          .catch((err) => {
-            console.error("ops! ocorreu um erro" + err);
-          });
-        }, []);
-    
-    // function validatePassword(){
-    //     var password = document.getElementById("passwd").value
-    //     var confirm_password = document.getElementById("passwdConfir").value;
-    //         if(password === confirm_password) {
-    //                 document.getElementById('resultado').innerHTML=''
-    //             } else {
-    //                 document.getElementById('resultado').innerHTML='não correspondem'
-    //             }
-    // }
+    this.state = {
+      errors: {},
+      user: {
+        nome: "",
+        email: "",
+        senha: "",
+        pwconfirm: ""
+      },
+      btnTxt: "mostrar senha",
+      type: "password",
+      btnImg: './assets/showPassword.svg',
+      score: "0"
+    };
 
-    return (
-        <div>
-            <div className='d-flex align-items-center cadastro-back-button'>
-                <Link to='/login'><img src="./assets/arrow_back_white.png" alt="voltar para a página de login"/></Link>
-            </div>
-            <div className='d-flex align-items-center justify-content-center cadastro-page'>
-                <Container>
-                    <Form>
-                        <div className='form-group'>
-                            <Row>
-                                <Col sm={12} lg={6}>
-                                    <Form.Label>Nome</Form.Label>
-                                    <Form.Control type='text' className='form-control' value={name} onChange={this.setUserName}/>
-                                </Col>
-                                <Col sm={12} lg={6}>
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Control type='email' className='form-control'></Form.Control>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col sm={12} lg={6}>
-                                    <Form.Label>Senha</Form.Label>
-                                    <input  type='password' className='form-control' id='passwd' ></input>
-                                </Col>
-                                <Col sm={12} lg={6}>
-                                <Form.Label>Confirmar Senha</Form.Label>
-                                   <input /* onKeyUp={ validatePassword()}*/ type='password' className='form-control' id='passwdConfir'  ></input>
-                                   <span id='resultado'></span>
-                                </Col>
-                            </Row>
+    this.pwMask = this.pwMask.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.submitSignup = this.submitSignup.bind(this);
+    this.validateForm = this.validateForm.bind(this);
+    this.pwHandleChange = this.pwHandleChange.bind(this);
+  }
 
-                        </div>
-                        <Button variant='submit' className='submit-button'>
-                            Cadastre-se
-                        </Button>
-                       
-                    </Form>
-                </Container>
-            </div>
-        </div>
+  handleChange(event) {
+    const field = event.target.name;
+    const user = this.state.user;
+    user[field] = event.target.value;
+
+    this.setState({
+      user
+    });
+  }
+
+  pwHandleChange(event) {
+    const field = event.target.name;
+    const user = this.state.user;
+    user[field] = event.target.value;
+
+    this.setState({
+      user
+    });
+
+    if (event.target.value === "") {
+      this.setState(state =>
+        Object.assign({}, state, {
+          score: "null"
+        })
+      );
+    } else {
+      var pw = zxcvbn(event.target.value);
+      this.setState(state =>
+        Object.assign({}, state, {
+          score: pw.score + 1
+        })
+      );
+    }
+  }
+
+  submitSignup(user) {
+    var params = { nome: user.nome, senha: user.senha, email: user.email };
+    console.log("tentando um cadastro");
+    axios
+      .post("http://localhost:3030/usuarios/", params)
+      .then(res => {
+        if (res.data.status === 201) {
+          console.log("cadastro feito com sucesso");
+        } else {
+          console.log("erro no cadastro");
+        }
+        console.log("sai do if");
+      })
+      .catch(err => {
+        console.log("Sign up data submit error: ", err);
+      });
+  }
+
+  validateForm(event) {
+    event.preventDefault();
+    var payload = validarFormularioCadastro(this.state.user);
+    if (payload.success) {
+      this.setState({
+        errors: {}
+      });
+      var user = {
+        nome: this.state.user.nome,
+        senha: this.state.user.senha,
+        email: this.state.user.email
+      };
+      this.submitSignup(user);
+    } else {
+      const errors = payload.errors;
+      this.setState({
+        errors
+      });
+    }
+  }
+
+  pwMask(event) {
+    event.preventDefault();
+    this.setState(state =>
+      Object.assign({}, state, {
+        type: this.state.type === "password" ? "input" : "password",
+        btnTxt: this.state.btnTxt === "mostrar senha" ? "esconder senha" : "mostrar senha",
+        btnImg: this.state.btnImg === './assets/showPassword.svg' ? './assets/hidePassword.svg' : './assets/showPassword.svg',
+      })
     );
+  }
+
+  render() {
+    return (
+      <div>
+        <FormularioCadastro
+          onSubmit={this.validateForm}
+          onChange={this.handleChange}
+          onPwChange={this.pwHandleChange}
+          errors={this.state.errors}
+          user={this.state.user}
+          score={this.state.score}
+          btnTxt={this.state.btnTxt}
+          btnImg={this.state.btnImg}
+          type={this.state.type}
+          pwMask={this.pwMask}
+        />
+      </div>
+    );
+  }
 }
 export default Cadastro;

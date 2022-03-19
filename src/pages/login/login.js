@@ -20,7 +20,7 @@ function Login() {
                             </div>
                             <Button variant='submit' className='login-submit-button'>Entrar</Button>
                             <br/>
-                            <Form.Text className='texto-cadastro'>Novo usuário? <Link to='/cadastro'>Cadastre-se aqui</Link></Form.Text>
+                            <Form.Text className='texto-cadastro'>Novo usuário?<Link to='/cadastro'>Cadastre-se aqui</Link></Form.Text>
                         </Form>
                     </Col>
                 </Row>

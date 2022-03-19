@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap'
 
-const PasswordStr = props => {
+const QualidadeSenha = props => {
   var strColor;
   var strWidth;
 
@@ -44,4 +44,4 @@ const PasswordStr = props => {
 
 }
 
-export default PasswordStr;
+export default QualidadeSenha;
