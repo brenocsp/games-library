@@ -89,3 +89,21 @@ body {
     color: red;
     font-size: 18px;
 }
+
+.texto-sucesso {
+    color: #D9D9D9;
+    font-size: 20px;
+    text-align: center;
+}
+
+.voltar-login-button{
+    background-color: #009900;
+    color: #D9D9D9;
+    border-color: transparent;
+    justify-content: center;
+}
+
+.voltar-login-button:hover {
+    color: #D9D9D9;
+    background-color: #00cc00;    
+}

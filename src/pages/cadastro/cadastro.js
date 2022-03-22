@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FormularioCadastro from "./formulario-cadastro.js";
+import api from '../../services/api.js'
 
-const axios = require("axios");
 const FormValidators = require("./validacao");
 const validarFormularioCadastro = FormValidators.validarFormularioCadastro;
 const zxcvbn = require("zxcvbn");
@@ -21,13 +21,14 @@ class Cadastro extends Component {
       btnTxt: "mostrar senha",
       type: "password",
       btnImg: './assets/showPassword.svg',
-      score: "0"
+      score: "0",
+      show: false
     };
 
     this.pwMask = this.pwMask.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.submitSignup = this.submitSignup.bind(this);
-    this.validateForm = this.validateForm.bind(this);
+    this.criarUsuario = this.criarUsuario.bind(this);
+    this.validarFormulario = this.validarFormulario.bind(this);
     this.pwHandleChange = this.pwHandleChange.bind(this);
   }
 
@@ -66,25 +67,28 @@ class Cadastro extends Component {
     }
   }
 
-  submitSignup(user) {
+  criarUsuario(user) {
     var params = { nome: user.nome, senha: user.senha, email: user.email };
-    console.log("tentando um cadastro");
-    axios
-      .post("http://localhost:3030/usuarios/", params)
+    console.log("tentando um cadastro...");
+    api
+      .post("/usuarios/", params)
       .then(res => {
-        if (res.data.status === 201) {
+        if (res.status === 201) {
           console.log("cadastro feito com sucesso");
-        } else {
-          console.log("erro no cadastro");
+          this.setState(state =>
+            Object.assign({}, state, {
+                show: true
+              })
+          );
         }
-        console.log("sai do if");
       })
       .catch(err => {
-        console.log("Sign up data submit error: ", err);
+        console.log("Erro do formulário de cadastro: ", err);
+        alert("Erro no Cadastro! Usuário já existente!");
       });
   }
 
-  validateForm(event) {
+  validarFormulario(event) {
     event.preventDefault();
     var payload = validarFormularioCadastro(this.state.user);
     if (payload.success) {
@@ -96,7 +100,7 @@ class Cadastro extends Component {
         senha: this.state.user.senha,
         email: this.state.user.email
       };
-      this.submitSignup(user);
+      this.criarUsuario(user);
     } else {
       const errors = payload.errors;
       this.setState({
@@ -115,22 +119,23 @@ class Cadastro extends Component {
       })
     );
   }
-
+  
   render() {
     return (
       <div>
         <FormularioCadastro
-          onSubmit={this.validateForm}
-          onChange={this.handleChange}
-          onPwChange={this.pwHandleChange}
-          errors={this.state.errors}
-          user={this.state.user}
-          score={this.state.score}
-          btnTxt={this.state.btnTxt}
-          btnImg={this.state.btnImg}
-          type={this.state.type}
-          pwMask={this.pwMask}
-        />
+            onSubmit={this.validarFormulario}
+            onChange={this.handleChange}
+            onPwChange={this.pwHandleChange}
+            errors={this.state.errors}
+            user={this.state.user}
+            score={this.state.score}
+            btnTxt={this.state.btnTxt}
+            btnImg={this.state.btnImg}
+            type={this.state.type}
+            show={this.state.show}
+            pwMask={this.pwMask}
+          />
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Container, Row, Col } from 'react-bootstrap'
+import { Button, Form, Container, Row, Col, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import QualidadeSenha from "./qualidade-senha.js";
 
@@ -7,21 +7,25 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './cadastro.css'
 
 const FormularioCadastro = ({
-  onSubmit,
-  onChange,
-  errors,
-  user,
-  score,
-  btnTxt,
-  btnImg,
-  type,
-  pwMask,
-  onPwChange
+    onSubmit,
+    onChange,
+    errors,
+    user,
+    score,
+    btnTxt,
+    btnImg,
+    type,
+    pwMask,
+    onPwChange,
+    show
 }) => {
+
   return (
     <div>
         <Row className='d-flex align-items-center cadastro-back-button'>
-            <Link to='/login'><img src="./assets/arrow_back_white.png" alt="voltar para a página de login"/></Link>
+            <Container>
+                <Link to='/login'><img src="./assets/arrow_back_white.png" alt="voltar para a página de login"/></Link>
+            </Container>
         </Row>
         <Row className='d-flex align-items-center justify-content-center cadastro-page'>
             <Container>
@@ -96,11 +100,30 @@ const FormularioCadastro = ({
                             </Col>
                         </Row>
                     </div>
-                    <Button 
+                    <Button
                         className='submit-button'
                         type="submit"
                         value="Submit"
-                    >Cadastre-se</Button>
+                    >Cadastrar-se</Button>
+
+                    <Modal
+                        show={show}
+                        backdrop="static"
+                        aria-labelledby="contained-modal-title-vcenter"
+                        keyboard={false}
+                        centered
+                    >
+                        <Modal.Body className="bg-modal-body">
+                            <p className="texto-sucesso">Cadastro feito com sucesso!</p>
+                            <div className="d-flex align-items-center justify-content-center">
+                                <Link to='/login'>
+                                    <Button className="voltar-login-button">
+                                        Ir ao Login
+                                    </Button>
+                                </Link>
+                            </div>
+                        </Modal.Body>
+                    </Modal>
                 </Form>
             </Container>
         </Row>

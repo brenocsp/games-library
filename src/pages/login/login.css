@@ -34,6 +34,11 @@
     color: #D9D9D9;
 }
 
+.login-submit-button:hover{
+    color: #D9D9D9;
+    background-color: #5e1aff;
+}
+
 .form-group {
     text-align: left;   
 }
@@ -44,4 +49,16 @@
 
 a {
     color: #775CB6;
+}
+
+.entrar-button{
+    background-color: #3700B3;
+    color: #D9D9D9;
+    border-color: transparent;
+    justify-content: center;
+}
+
+.entrar-button:hover {
+    color: #D9D9D9;
+    background-color: #5e1aff;    
 }

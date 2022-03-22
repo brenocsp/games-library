@@ -2,7 +2,19 @@
 Se você está na trilha de front-end, você provavelmente vai precisar saber como rodar a esta API para usar junto com o React. Nesta pequena documentação estão detalhes sobre como rodar a API e sobre as rotas possíveis.
 
 ## Como rodar o sistema
-Primeiramente, é preciso adicionar um arquivo chamado `.env` na pasta `Semana 3` com o seguinte conteúdo:
+Primeiramente, é preciso clonar essa API para o seu ambiente de desenvolvimento. Para isso, abra com o terminal a pasta em que você deseja ter 
+o seu projeto, inicialize um repositório git e clone o repositório para seu ambiente. Se você quiser, pode renomear a pasta para algo mais simples.
+    
+    > git init
+    > git clone https://github.com/UFMGInformaticaJr/PT-2022.1-API-React.git
+
+A sua estrutura do projeto deve ser: 
+
+    - Projeto-Semana-3
+      |- API
+      |- React-App
+
+Em seguida, você deve adicionar um arquivo chamado `.env` na pasta `API` com o seguinte conteúdo:
 ```.env
 SECRET_KEY='^Q[y5F)3Fw`<A.QmQHoP~8^/sa%@c6/S33^Z#C(ZwSQx3"h)7]"\]6'
 JWT_EXPIRATION='15d'
@@ -13,6 +25,11 @@ NODE_ENV='development'
 Para rodar o sistema, você pode usar o comando `npm i` para instalar as dependências (caso seja a primeira vez rodando) e o comando `npm start` para rodar de fato a API.
 
 ## Rotas
+
+Para fazer uma requisição a uma das rotas abaixo, você irá utilizar a URL http://localhost:3001 acrescido da URL correspondente da rota, utilizando o método HTTP correspondente e passando os dados necessários. Por exemplo:
+
+    Login: Método Post na URL http://localhost:3001/usuarios/login passando o email e a senha de um usuário cadastrado.
+
 ### Login
 Rota para fazer login no sistema, ou seja, obter o token JWT necessário para autenticação. Ele é automaticamente adicionado aos cookies do navegador.
 
@@ -40,7 +57,7 @@ Rota para fazer logout do sistema. Isso equivale a remover do navegador o cookie
     - **Conteúdo**: Vazio
 
 ### Criar usuário
-Rota usada para criar um novo usuário no sistema.
+Rota usada para criar um novo usuário no sistema. Se tentar criar um usuário com um e-mail já existente, um erro será gerado.
 
 - **URL:** /usuarios/
 - **Método:** `POST`

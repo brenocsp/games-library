@@ -1,14 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap%27');
 
-body {
-    background-color: #121212;
-}
-
-h1 {
-    margin-top: 30px;
-}
-
-.conta {
+.minha-conta-body {
+    background-color: #252525;
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
     color: #D9D9D9;
@@ -18,17 +11,25 @@ h1 {
     display: flex;
 }
 
+h1 {
+    color: #D9D9D9;
+    font-size: 60px;
+    text-align: left;
+    margin-bottom: 70px;
+}
+
 .formConta {
     margin-top: 10px;
     text-align: left;
+    font-size: 26px;
 }
 
-.form-control {
-    background-color: #252525;
+.form-control:disabled {
     border-color: transparent;
     font-size: 26px;
     margin-bottom: 20px;
     color: #D9D9D9;
     margin-left: 0px;
     text-align: left;
+    background-color: #333333;
 }

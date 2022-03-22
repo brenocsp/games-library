@@ -9,11 +9,24 @@
     font-size: 36px;
     font-weight: 275;
     border: 0px transparent;
-    /* border-radius: 8px 8px 0 0; */
 }
 
 .modal-content {
     border: 0;
+}
+
+.add-image{
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.add-button {
+    padding: 0px !important;
+    background-color: transparent !important;
+    border-width: 0px;
+    color: #775CB6;
+    font-size: 28px;
+    font-weight: 200;
 }
 
 .bg-modal-body {
@@ -54,8 +67,4 @@
 
 .cancel-button {
     background-color: #914949;
-}
-
-.add-button {
-    background-color: #3700B3;
 }

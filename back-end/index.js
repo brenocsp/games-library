@@ -15,6 +15,7 @@ app.use(cookieParser());
 
 require('./auth');
 
+app.use(express.json());
 app.use(express.urlencoded({
   extended: false,
 }));

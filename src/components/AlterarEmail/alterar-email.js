@@ -11,7 +11,7 @@ function AlterarEmailModal() {
 
   return (
     <>
-      <Button variant="link" onClick={handleShow} className="edEmail">
+      <Button onClick={handleShow} className="edEmail">
         Editar Email
       </Button>
 

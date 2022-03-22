@@ -16,6 +16,7 @@ function loginMiddleware(req, res, next) {
           email: user.email,
         };
 
+        console.log(body);
         const token = jwt.sign({user: body}, process.env.SECRET_KEY, {
           expiresIn: process.env.JWT_EXPIRATION,
         });

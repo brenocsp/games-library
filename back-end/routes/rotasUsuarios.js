@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const Usuario = require('../models/Usuario');
-const {InvalidParamsError, NotAuthorizedError} = require('../custom-errors');
+const {InvalidParamsError, NotAuthorizedError, DuplicateError} = require('../custom-errors');
 const {loginMiddleware, jwtMiddleware} = require('../middleware/auth-middlewares');
 
 router.post('/login', loginMiddleware);
@@ -18,20 +18,27 @@ router.get('/logout', jwtMiddleware, async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const body = req.body;
-
-    const saltRounds = 10;
-    const senhaHash = await bcrypt.hash(body.senha, saltRounds);
-
-    const usuario = {
-      nome: body.nome,
-      email: body.email,
-      senha: senhaHash,
-    };
-
-    await Usuario.create(usuario);
-
-    res.status(201).end();
+    const usuarioExistente = await Usuario.findOne({
+      where: {
+        'email': req.body.email
+      }
+    })
+    if (!usuarioExistente) {
+      const body = req.body;
+      const saltRounds = 10;
+      const senhaHash = await bcrypt.hash(body.senha, saltRounds);
+      const usuario = {
+        nome: body.nome,
+        email: body.email,
+        senha: senhaHash,
+      };
+      await Usuario.create(usuario);
+  
+      res.status(201).end(); 
+    }
+    else {
+      throw new DuplicateError("Usuário já existe.")
+    }
   } catch (error) {
     next(error);
   }

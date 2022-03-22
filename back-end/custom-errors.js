@@ -12,4 +12,11 @@ class NotAuthorizedError extends Error {
   }
 }
 
-module.exports = {InvalidParamsError, NotAuthorizedError};
+class DuplicateError extends Error {
+  constructor(msg) {
+    super(msg);
+    this.name = 'DuplicateError';
+  }
+}
+
+module.exports = {InvalidParamsError, NotAuthorizedError, DuplicateError};

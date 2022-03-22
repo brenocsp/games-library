@@ -28,8 +28,8 @@ function TabelaJogos() {
               <th className="texto-cabecalho largura-pequena">Título</th>
               <th className="texto-cabecalho largura-pequena">Preço</th>
               <th className="texto-cabecalho">Gênero</th>
-              <th className="texto-cabecalho texto-add-jogos largura-media">
-                <AddGameModal />
+              <th className="texto-cabecalho add-jogos largura-media d-flex justify-content-end">
+                <AddGameModal/>
               </th>
             </tr>
           </thead>
@@ -54,7 +54,7 @@ function TabelaJogos() {
             </tr>
           </tbody>
         </Table>
-        <p className="texto-add-jogos-final"><AddGameModal /> </p>     
+        <p className="add-jogos-final d-flex justify-content-center"><AddGameModal/> </p>     
     </div>
   );
 }

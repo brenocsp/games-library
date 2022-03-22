@@ -11,7 +11,7 @@ function AlterarSenhaModal() {
 
   return (
     <>
-      <Button variant="link" onClick={handleShow} className="trocarSenha">
+      <Button onClick={handleShow} className="trocarSenha">
         Trocar Senha
       </Button>
 
